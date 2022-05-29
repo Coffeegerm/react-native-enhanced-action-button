@@ -1,0 +1,31 @@
+{
+  "name": "react-native-enhanced-action-button",
+  "version": "1.0.0",
+  "description": "Customizable multi-action-button component for react-native",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Coffeegerm/react-native-enhanced-action-button.git"
+  },
+  "keywords": [
+    "react-native",
+    "action-button",
+    "float-button",
+    "multi-action-button"
+  ],
+  "peerDependencies": {
+    "react-native": ">=0.11"
+  },
+  "author": "David Yarzebinski",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Coffeegerm/react-native-enhanced-action-button/issues"
+  },
+  "homepage": "https://github.com/Coffeegerm/react-native-enhanced-action-button",
+  "dependencies": {
+    "prop-types": "^15.5.10"
+  }
+}
