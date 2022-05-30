@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet, useColorScheme} from 'react-native';
+import {SafeAreaView, useColorScheme} from 'react-native';
 import {ActionButton} from 'react-native-enhanced-action-button';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';

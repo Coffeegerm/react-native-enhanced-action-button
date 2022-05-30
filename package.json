@@ -2,9 +2,15 @@
   "name": "react-native-enhanced-action-button",
   "version": "1.0.0",
   "description": "Customizable multi-action-button component for react-native",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib/**/*"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rimraf lib && tsc --project ./tsconfig.json --declaration",
+    "lint": "eslint --ext .js,.ts,.tsx ./"
   },
   "repository": {
     "type": "git",
@@ -17,7 +23,8 @@
     "multi-action-button"
   ],
   "peerDependencies": {
-    "react-native": ">=0.11"
+    "react": "*",
+    "react-native": "*"
   },
   "author": "David Yarzebinski",
   "license": "MIT",
@@ -27,5 +34,15 @@
   "homepage": "https://github.com/Coffeegerm/react-native-enhanced-action-button",
   "dependencies": {
     "prop-types": "^15.5.10"
+  },
+  "devDependencies": {
+    "@react-native-community/eslint-config": "2.0.0",
+    "@types/react": "16.9.41",
+    "@types/react-native": "0.63.1",
+    "@typescript-eslint/eslint-plugin": "4.33.0",
+    "@typescript-eslint/parser": "^5.26.0",
+    "eslint": "7.3.0",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.7.2"
   }
 }

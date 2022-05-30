@@ -1,13 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
-import PropTypes from "prop-types";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Animated,
-  TouchableOpacity,
-} from "react-native";
-import ActionButtonItem from "./ActionButtonItem";
+import React, { useState, useRef, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { StyleSheet, Text, View, Animated, TouchableOpacity } from 'react-native';
+import ActionButtonItem from './ActionButtonItem';
 import {
   shadowStyle,
   alignItemsMap,
@@ -15,7 +9,7 @@ import {
   isAndroid,
   touchableBackground,
   DEFAULT_ACTIVE_OPACITY,
-} from "./shared";
+} from './shared';
 
 export const ActionButton = (props) => {
   const [, setResetToken] = useState(props.resetToken);
@@ -70,8 +64,7 @@ export const ActionButton = (props) => {
       {
         elevation: props.elevation,
         zIndex: props.zIndex,
-        justifyContent:
-          props.verticalOrientation === "up" ? "flex-end" : "flex-start",
+        justifyContent: props.verticalOrientation === 'up' ? 'flex-end' : 'flex-start',
       },
     ];
   };
@@ -88,7 +81,7 @@ export const ActionButton = (props) => {
         {
           rotate: anim.current.interpolate({
             inputRange: [0, 1],
-            outputRange: ["0deg", props.degrees + "deg"],
+            outputRange: ['0deg', props.degrees + 'deg'],
           }),
         },
       ],
@@ -97,10 +90,7 @@ export const ActionButton = (props) => {
     const wrapperStyle = {
       backgroundColor: anim.current.interpolate({
         inputRange: [0, 1],
-        outputRange: [
-          props.buttonColor,
-          props.btnOutRange || props.buttonColor,
-        ],
+        outputRange: [props.buttonColor, props.btnOutRange || props.buttonColor],
       }),
       width: props.size,
       height: props.size,
@@ -111,8 +101,8 @@ export const ActionButton = (props) => {
       width: props.size,
       height: props.size,
       borderRadius: props.size / 2,
-      alignItems: "center",
-      justifyContent: "center",
+      alignItems: 'center',
+      justifyContent: 'center',
     };
 
     const Touchable = getTouchableComponent(props.useNativeFeedback);
@@ -162,17 +152,16 @@ export const ActionButton = (props) => {
   };
 
   const _renderButtonIcon = () => {
-    const { icon, renderIcon, btnOutRangeTxt, buttonTextStyle, buttonText } =
-      props;
+    const { icon, renderIcon, btnOutRangeTxt, buttonTextStyle, buttonText } = props;
     if (renderIcon) return renderIcon(active);
     if (icon) {
       console.warn(
-        "react-native-action-button: The `icon` prop is deprecated! Use `renderIcon` instead."
+        'react-native-action-button: The `icon` prop is deprecated! Use `renderIcon` instead.'
       );
       return icon;
     }
 
-    const textColor = buttonTextStyle.color || "rgba(255,255,255,1)";
+    const textColor = buttonTextStyle.color || 'rgba(255,255,255,1)';
 
     return (
       <Animated.Text
@@ -199,21 +188,19 @@ export const ActionButton = (props) => {
 
     let actionButtons = !Array.isArray(children) ? [children] : children;
 
-    actionButtons = actionButtons.filter(
-      (actionButton) => typeof actionButton == "object"
-    );
+    actionButtons = actionButtons.filter((actionButton) => typeof actionButton === 'object');
 
     const actionStyle = {
       flex: 1,
-      alignSelf: "stretch",
+      alignSelf: 'stretch',
       // backgroundColor: 'purple',
-      justifyContent: verticalOrientation === "up" ? "flex-end" : "flex-start",
-      paddingTop: props.verticalOrientation === "down" ? props.spacing : 0,
+      justifyContent: verticalOrientation === 'up' ? 'flex-end' : 'flex-start',
+      paddingTop: props.verticalOrientation === 'down' ? props.spacing : 0,
       zIndex: props.zIndex,
     };
 
     return (
-      <View style={actionStyle} pointerEvents={"box-none"}>
+      <View style={actionStyle} pointerEvents={'box-none'}>
         {actionButtons.map((ActionButton, idx) => (
           <ActionButtonItem
             key={idx}
@@ -235,13 +222,7 @@ export const ActionButton = (props) => {
   };
 
   const _renderTappableBackground = () => {
-    return (
-      <TouchableOpacity
-        activeOpacity={1}
-        style={getOverlayStyles()}
-        onPress={reset}
-      />
-    );
+    return <TouchableOpacity activeOpacity={1} style={getOverlayStyles()} onPress={reset} />;
   };
 
   //////////////////////
@@ -293,19 +274,12 @@ export const ActionButton = (props) => {
       >
         {props.backdrop}
       </Animated.View>
-      <View
-        pointerEvents="box-none"
-        style={[getOverlayStyles(), getOrientation(), getOffsetXY()]}
-      >
+      <View pointerEvents="box-none" style={[getOverlayStyles(), getOrientation(), getOffsetXY()]}>
         {active && !props.backgroundTappable && _renderTappableBackground()}
 
-        {props.verticalOrientation === "up" &&
-          props.children &&
-          _renderActions()}
+        {props.verticalOrientation === 'up' && props.children && _renderActions()}
         {_renderMainButton()}
-        {props.verticalOrientation === "down" &&
-          props.children &&
-          _renderActions()}
+        {props.verticalOrientation === 'down' && props.children && _renderActions()}
       </View>
     </View>
   );
@@ -322,11 +296,7 @@ ActionButton.propTypes = {
   zIndex: PropTypes.number,
 
   hideShadow: PropTypes.bool,
-  shadowStyle: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.array,
-    PropTypes.number,
-  ]),
+  shadowStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array, PropTypes.number]),
 
   renderIcon: PropTypes.func,
 
@@ -346,7 +316,7 @@ ActionButton.propTypes = {
   onPressOut: PropTypes.func,
   backdrop: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
   degrees: PropTypes.number,
-  verticalOrientation: PropTypes.oneOf(["up", "down"]),
+  verticalOrientation: PropTypes.oneOf(['up', 'down']),
   backgroundTappable: PropTypes.bool,
   activeOpacity: PropTypes.number,
 
@@ -362,11 +332,11 @@ ActionButton.propTypes = {
 ActionButton.defaultProps = {
   resetToken: null,
   active: false,
-  bgColor: "transparent",
+  bgColor: 'transparent',
   bgOpacity: 1,
-  buttonColor: "rgba(0,0,0,1)",
+  buttonColor: 'rgba(0,0,0,1)',
   buttonTextStyle: {},
-  buttonText: "+",
+  buttonText: '+',
   spacing: 20,
   outRangeScale: 1,
   autoInactive: true,
@@ -375,16 +345,16 @@ ActionButton.defaultProps = {
   onPressOn: () => {},
   backdrop: false,
   degrees: 45,
-  position: "right",
+  position: 'right',
   offsetX: 30,
   offsetY: 30,
   size: 56,
-  verticalOrientation: "up",
+  verticalOrientation: 'up',
   backgroundTappable: false,
   useNativeFeedback: true,
   activeOpacity: DEFAULT_ACTIVE_OPACITY,
   fixNativeFeedbackRadius: false,
-  nativeFeedbackRippleColor: "rgba(255,255,255,0.75)",
+  nativeFeedbackRippleColor: 'rgba(255,255,255,0.75)',
   testID: undefined,
   accessibilityLabel: undefined,
   accessible: undefined,
@@ -392,16 +362,16 @@ ActionButton.defaultProps = {
 
 const styles = StyleSheet.create({
   overlay: {
-    position: "absolute",
+    position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
     top: 0,
-    backgroundColor: "transparent",
+    backgroundColor: 'transparent',
   },
   btnText: {
     marginTop: -4,
     fontSize: 24,
-    backgroundColor: "transparent",
+    backgroundColor: 'transparent',
   },
 });
